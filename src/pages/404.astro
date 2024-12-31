@@ -1,0 +1,67 @@
+---
+import "../styles/404.css";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap"
+            rel="stylesheet"
+        />
+        <title>Page Not Found :(</title>
+    </head>
+    <body>
+        <main>
+            <h1>404: Page Not Found</h1>
+            <h2>UH OH! You're lost.</h2>
+            <p>
+                The page you are looking for does not exist. How you got here is
+                a mystery. <br /> But you can click
+                <a href="/" id="home" role="button">Here</a>
+                to go back to the homepage or click on the GIF below for a surprise.<br
+                />
+            </p>
+
+            <img
+                id="chewy-gif"
+                src="https://media.tinkernerd.dev/gifs/archive_incomplete.gif"
+                width="498"
+                height="280"
+                alt="Impossible. Perhaps the archives are incomplete."
+            />
+        </main>
+        <script lang="javascript">
+            const chew = new Audio(
+                "https://media.tinkernerd.dev/sounds/chewbacca.mp3",
+            );
+
+            // Add click event listener to the GIF
+            document
+                .getElementById("chewy-gif")
+                .addEventListener("click", () => {
+                    chew.currentTime = 0;
+                    chew.play();
+                });
+
+            // Add click event listener to the "Home" button
+            document
+                .getElementById("home")
+                .addEventListener("click", (event) => {
+                    event.preventDefault(); // Prevent immediate navigation
+                    document.title = "Redirecting..."; // Change tab title
+                    chew.currentTime = 0;
+                    chew.play();
+
+                    // Wait for the sound to finish before navigating
+                    chew.onended = () => {
+                        window.location.href = "/";
+                    };
+                });
+        </script>
+    </body>
+</html>

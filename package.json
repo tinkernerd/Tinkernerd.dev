@@ -1,8 +1,7 @@
 {
-  "name": "tinkernerd.dev",
-	"version": "0.0.1",
-	"private": true,
-	"license": "MIT",
+  "name": "gullible-gamma",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -10,6 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.0.3",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/vercel": "^8.0.1",
     "astro": "^5.1.1"
   }
 }
