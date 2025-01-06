@@ -1,14 +1,37 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypePresetMinify from 'rehype-preset-minify'
+import react from '@astrojs/react'
+import vercelServerless from '@astrojs/vercel/serverless'
 
-import sitemap from '@astrojs/sitemap';
+const rehypeExternalLinksConfig = [
+	rehypeExternalLinks,
+	{ target: '_blank', rel: ['noopener', 'noreferrer'] }
+]
 
-import vercel from '@astrojs/vercel';
-
-import mdx from '@astrojs/mdx';
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [sitemap(), mdx()],
-  adapter: vercel()
+	site: 'https://tinkernerd.dev/',
+	trailingSlash: 'never',
+	output: 'server',
+	adapter: vercelServerless({ analytics: true }),
+	server: {
+		port: parseInt(process.env.PORT || '3000')
+	},
+	integrations: [
+		mdx({
+			rehypePlugins: [ rehypeExternalLinksConfig, rehypePresetMinify ]
+		}),
+		react(),
+		sitemap({
+		})
+	],
+	markdown: {
+		smartypants: true,
+		rehypePlugins: [ rehypeExternalLinksConfig ],
+		shikiConfig: {
+			theme: 'one-dark-pro'
+		}
+	}
 });
