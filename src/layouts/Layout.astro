@@ -1,0 +1,26 @@
+---
+import "../styles/styles.scss";
+import SEO from "../components/SEO.astro";
+import CommonHead from '../components/Head.astro';
+---
+
+<html lang="en">
+	<head>
+		<CommonHead />
+		<title>TinkerNerd!</title>
+
+		<SEO
+			description="🚀 This site is a collection of my projects, passions, and explorations across various domains. From programming to aviation, and a love for tinkering, there’s always something happening here."
+		/>
+
+		<script
+			src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>

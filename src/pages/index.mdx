@@ -1,99 +1,100 @@
-import HomepageLayout from '../layouts/HomepageLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import ProjectList from '../components/ProjectList.tsx';
-
+import LatestProjects from '../components/LatestProjects';
 
 
 <Header/>
+<Layout>
+![Header Image](https://media.tinkernerd.dev/logos/dev-banner.png)
+# 👋 Howdy, I'm Nick!
+## Aka *"The Tinkering Nerd"*  
 
-<HomepageLayout>
-  ![Header Image](https://media.tinkernerd.dev/logos/dev-banner.png)
-  # 👋 Howdy, I'm Nick!
-  ## Aka *"The Tinkering Nerd"*  
+Welcome to my little corner of the web, where old-school curiosity meets cutting-edge innovation. 🚀 This site is a collection of my projects, passions, and explorations across various domains. From programming to aviation, and a love for tinkering, there’s always something happening here. Check out my [notes](#notes) and other sections below!
 
-  Welcome to my little corner of the web, where old-school curiosity meets cutting-edge innovation. 🚀 This site is a collection of my projects, passions, and explorations across various domains. From programming to aviation, and a love for tinkering, there’s always something happening here. Check out my [notes](#notes) and other sections below!
-
-  Reach out: [nick@tinkernerd.dev](mailto:nick@tinkernerd.dev)  
-  Find me on : [GitHub](https://github.com/tinkernerd) | [LinkedIn](https://www.linkedin.com/in/nicholasstull/) | [Resume](https://media.tinkernerd.dev/Stull_Nicholas-Resume.pdf)  
-
-  ---
-
-  ## On this page:
-  <nav class='quick-links'>
-		- [What I'm Working On](#🔭-what-i'm-working-on)
-    - [Notes](#notes)
-    - [Projects](#projects)
-    - [Aviation](#aviation)
-    - [Other Things](#other-things)
-  </nav>
-
-
-  ### 🔭 **What I'm Working On**
-  - **Current Project:** 
-		- Refining my website — [Tinkernerd.dev](https://tinkernerd.dev)  (Hint - you're here!) 🤠
-		- Refining my Notes and putting them on Github
-			- Creating a Notes page that can be re-usable. Trying to use astro and have it be docs.tinkernerd.dev/topic
-		- Working on my PPL (Private Pilot License) 🛩️
-  - **Always Learning:** Life’s lessons, one experiment at a time. 🌱  
-
-  ---
-
-
-  ## Notes
-	> 🚧 Notes are Currently Under Construction. 🚧 <br/>
-	> Please check back soon!  <br/>
-	> Check out my [GitHub](https://github.com/tinkernerd) for more information and for the notes themselves.
-	
-  I’m a knowledge hoarder and love sharing what I’ve learned. My notes span a variety of topics, from aviation to theology and beyond. These notes are hosted on [docs.tinkernerd.dev](https://docs.tinkernerd.dev):
-
-  - [Dev Notes](https://docs.tinkernerd.dev/dev)
-  - [Bible Notes](https://docs.tinkernerd.dev/bible)
-  - [Aviation Notes](https://docs.tinkernerd.dev/aviation)
-  - [Class Notes](https://docs.tinkernerd.dev/class-notes)
-  - [More Topics](https://docs.tinkernerd.dev/more-topics)
-
-  Feel free to browse and share your thoughts!
-
-  ## Projects
-  > 🚧 Section is Currently Under Construction. 🚧 <br/>
-	> Please check back soon!  <br/>
-	> Check out my [GitHub](https://github.com/tinkernerd) for more information and for the notes themselves.
-
-  I’ve worked on various projects that reflect my curiosity and passion for building things.
-
-<ProjectList client:load />
-
-
+Reach out: [Howdy@tinkernerd.dev](mailto:Howdy@tinkernerd.dev)  
+Find me on : [GitHub](https://github.com/tinkernerd) | [LinkedIn](https://www.linkedin.com/in/nicholasstull/) | [Resume](https://media.tinkernerd.dev/Stull_Nicholas-Resume.pdf)  
 
 ---
 
-  ## Aviation
+## On this page:
+<nav class='quick-links'>
+  - [What I'm Working On](#🔭-what-i'm-working-on)
+  - [Notes](#notes)
+  - [Projects](#projects)
+  - [Aviation](#aviation)
+  - [Other Things](#other-things)
+</nav>
 
-  ✈️ I’m currently training to obtain my Private Pilot License (PPL) and love exploring the world of aviation. Whether it’s learning how planes work, exploring the history of aviation, or immersing myself in flight simulation, I’m always looking for new ways to learn and grow.
 
-  See more in my [aviation notes](https://docs.tinkernerd.dev/aviation).
+### 🔭 **What I'm Working On**
+- **Current Project:** 
+  - Refining my website — [Tinkernerd.dev](https://tinkernerd.dev)  (Hint - you're here!) 🤠
+  - Refining my Notes and putting them on Github
+    - Creating a Notes page that can be re-usable. Trying to use astro and have it be docs.tinkernerd.dev/topic
+  - Working on my PPL (Private Pilot License) 🛩️
+- **Always Learning:** Life’s lessons, one experiment at a time. 🌱  
+
+---
+
+
+## Notes
+> 🚧 Notes are Currently Under Construction. 🚧 <br/>
+> Please check back soon!  <br/>
+> Check out my [GitHub](https://github.com/tinkernerd) for more information and for the notes themselves.
+
+I’m a knowledge hoarder and love sharing what I’ve learned. My notes span a variety of topics, from aviation to theology and beyond. These notes are hosted on [docs.tinkernerd.dev](https://docs.tinkernerd.dev):
+
+- [Dev Notes](https://docs.tinkernerd.dev/dev)
+- [Bible Notes](https://docs.tinkernerd.dev/bible)
+- [Aviation Notes](https://docs.tinkernerd.dev/aviation)
+- [Class Notes](https://docs.tinkernerd.dev/class-notes)
+- [More Topics](https://docs.tinkernerd.dev/more-topics)
+
+Feel free to browse and share your thoughts!
+
+---
+
+## My Projects
+
+### A Passion for Building
+
+I’ve always been driven by curiosity and a desire to create. My projects range from automation tools and web development to hardware tinkering and open-source contributions. 
+Each one is a reflection of my journey as a tinkerer, developer, and maker.
+
+<LatestProjects client:load />
+
+Want to explore more?  
+Check out the [full list of projects](./projects) to dive into all my work.
+
+---
+
+## Aviation
+
+✈️ I’m currently training to obtain my Private Pilot License (PPL) and love exploring the world of aviation. Whether it’s learning how planes work, exploring the history of aviation, or immersing myself in flight simulation, I’m always looking for new ways to learn and grow.
+
+See more in my [aviation notes](https://docs.tinkernerd.dev/aviation).
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~~ ~   Fly safe!   ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 ---
 
-  ## Other Things
+## Other Things
 
-  When I’m not coding or doing who knows what, I like try to keep active and explore the outdoors. 
-	<br/> I’ve recently started integrating fitness tracking and outdoor adventures into my routine. Here’s a live look at my Strava activity:
+When I’m not coding or doing who knows what, I like try to keep active and explore the outdoors. 
+<br/> I’ve recently started integrating fitness tracking and outdoor adventures into my routine. Here’s a live look at my Strava activity:
 
-  <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/72133560/activity-summary/94e75d2f8f109991f80ee7db2958cd4956d61795'></iframe>
+<iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/72133560/activity-summary/94e75d2f8f109991f80ee7db2958cd4956d61795'></iframe>
 
-  Let’s connect on [Strava](https://www.strava.com/athletes/72133560)!
+Let’s connect on [Strava](https://www.strava.com/athletes/72133560)!
 
-  ---
+---
 
-  ### 📫 **Let’s Connect**
-  Got questions, ideas, or just want to say hi?  
-  📧 [howdy@tinkernerd.dev](mailto:howdy@tinkernerd.dev)  
+### 📫 **Let’s Connect**
+Got questions, ideas, or just want to say hi?  
+📧 [howdy@tinkernerd.dev](mailto:howdy@tinkernerd.dev)  
 
-  ---
+---
 
-  Thanks for stopping by! Keep tinkering, exploring, and making life an adventure. 🌟
+Thanks for stopping by! Keep tinkering, exploring, and making life an adventure. 🌟
 
-</HomepageLayout>
+</Layout>
 
