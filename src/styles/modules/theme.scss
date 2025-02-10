@@ -148,6 +148,9 @@
   --animation-duration: 0.1s;
   --variable: #39a33c;
   --highlight: #ff0;
+
+  --project-info-btn: var(--color-gray-10);
+  --projects-info-icon: var(--accent-color);
 }
 
 body {
@@ -226,6 +229,8 @@ body {
     video {
       opacity: 0.8;
     }
+  --project-info-btn: var(--color-white);
+  --projects-info-icon: var(--accent-color-mid);
 }
 
 ::selection {

@@ -3,8 +3,8 @@
       "id": "bill-total",
       "name": "Bill Total",
       "description": "A simple bill total calculator built with vanilla JavaScript.",
-      "btnColor": "var(--theme-accent)",
-      "iconColor": "var(--theme-accent)",
+      "btnColor": "192 47% 35%",
+      "iconColor": "24 50% 97.9%",
       "tags": [
           "css",
           "javascript"
@@ -17,8 +17,8 @@
       "id": "book-review",
       "name": "Book Review",
       "description": "This script updates a character count in real time as a user types into a textarea element. It also displays a warning if the character count exceeds a certain limit.",
-      "btnColor": "var(--theme-accent)",
-      "iconColor": "var(--theme-accent)",
+      "btnColor": "192 47% 35%",
+      "iconColor": "24 50% 97.9%",
       "tags": [
           "css",
           "javascript"
@@ -31,8 +31,8 @@
     "id": "bouncing-balls",
     "name": "Bouncing Balls",
     "description": "A simple bouncing ball animation using HTML, CSS, and JavaScript.",
-    "btnColor": "var(--theme-accent)",
-    "iconColor": "var(--theme-accent)",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
     "tags": [
         "css",
         "javascript"
@@ -45,8 +45,8 @@
     "id": "calculator",
     "name": "Calculator",
     "description": "A calculator using JS, HTML, and CSS",
-    "btnColor": "var(--theme-accent)",
-    "iconColor": "var(--theme-accent)",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
     "tags": [
         "css",
         "javascript",
@@ -57,27 +57,27 @@
     "code": "https://github.com/tinkernerd/js-calc"
   },
   {
-      "id": "live-metar",
-      "name": "Live METAR",
-      "description": "A simple app to view live METAR data.",
-      "btnColor": "var(--theme-accent)",
-      "iconColor": "var(--theme-accent)",
-      "tags": [
-          "css",
-          "javascript",
-          "api"
-      ],
-      "draft": false,
-      "url": "live-metar",
-      "code": "https://github.com/tinkernerd/live-metar"
+    "id": "live-metar",
+    "name": "Live METAR",
+    "description": "A simple app to view live METAR data.",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "tags": [
+        "css",
+        "javascript",
+        "api"
+    ],
+    "draft": false,
+    "url": "live-metar",
+    "code": "https://github.com/tinkernerd/live-metar"
   },
 
   {
     "id": "metar-decoder",
     "name": "METAR Decoder",
     "description": "A simple app to decode METAR data.",
-    "btnColor": "var(--theme-accent)",
-    "iconColor": "var(--theme-accent)",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
     "tags": [
         "css",
         "javascript",
