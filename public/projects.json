@@ -4,7 +4,7 @@
       "name": "Bill Total",
       "description": "A simple bill total calculator built with vanilla JavaScript.",
       "btnColor": "var(--theme-accent)",
-      "iconColor": "var(--theme-bkg)",
+      "iconColor": "var(--theme-accent)",
       "tags": [
           "css",
           "javascript"
@@ -18,7 +18,7 @@
       "name": "Book Review",
       "description": "This script updates a character count in real time as a user types into a textarea element. It also displays a warning if the character count exceeds a certain limit.",
       "btnColor": "var(--theme-accent)",
-      "iconColor": "var(--theme-bkg)",
+      "iconColor": "var(--theme-accent)",
       "tags": [
           "css",
           "javascript"
@@ -32,7 +32,7 @@
     "name": "Bouncing Balls",
     "description": "A simple bouncing ball animation using HTML, CSS, and JavaScript.",
     "btnColor": "var(--theme-accent)",
-    "iconColor": "var(--theme-bkg)",
+    "iconColor": "var(--theme-accent)",
     "tags": [
         "css",
         "javascript"
@@ -46,7 +46,7 @@
     "name": "Calculator",
     "description": "A calculator using JS, HTML, and CSS",
     "btnColor": "var(--theme-accent)",
-    "iconColor": "var(--theme-bkg)",
+    "iconColor": "var(--theme-accent)",
     "tags": [
         "css",
         "javascript",
@@ -61,7 +61,7 @@
       "name": "Live METAR",
       "description": "A simple app to view live METAR data.",
       "btnColor": "var(--theme-accent)",
-      "iconColor": "var(--theme-bkg)",
+      "iconColor": "var(--theme-accent)",
       "tags": [
           "css",
           "javascript",
@@ -77,7 +77,7 @@
     "name": "METAR Decoder",
     "description": "A simple app to decode METAR data.",
     "btnColor": "var(--theme-accent)",
-    "iconColor": "var(--theme-bkg)",
+    "iconColor": "var(--theme-accent)",
     "tags": [
         "css",
         "javascript",
