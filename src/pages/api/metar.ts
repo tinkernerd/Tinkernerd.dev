@@ -16,7 +16,7 @@ export async function GET(context: APIContext) {
         return new Response(JSON.stringify({ error: "Airport code is required" }), { status: 400 });
     }
 
-    const apiKey = import.meta.env.PUBLIC_AVWX_API_KEY;
+    const apiKey = import.meta.env.AVWX_API_KEY;
     console.log("Fetching METAR for:", airport);
 
     try {

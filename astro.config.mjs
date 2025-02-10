@@ -17,7 +17,7 @@ export default defineConfig({
   ],
   env: {
     schema: {
-      PUBLIC_AVWX_API_KEY: envField.string({ context: "client", access: "public" }),
+      AVWX_API_KEY: envField.string({ context: "client", access: "public" }),
     }
   },
 });
