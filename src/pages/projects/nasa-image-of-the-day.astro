@@ -1,0 +1,92 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+
+---
+
+<ProjectLayout
+  title="NASA Image of the Day"
+  description="A simple web app that displays the NASA image of the day.">
+  <header>
+    <h1>Astronomy Picture of the Day</h1>
+    <p>Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer.</p>
+  </header>
+  <section>
+    <div id="dateContainer">
+       <label for="photoDate">Picture Date</label>
+       <input type="date" id="dateBox" /><br />
+       <div class="hero-image" id="nasaImage" alt=""></div>
+    </div>
+  </section>
+</ProjectLayout>
+
+<script is:inline>
+  let imageBox = document.getElementById("nasaImage");
+let dateBox = document.getElementById("dateBox");
+
+dateBox.onchange = function() {
+    // Declare the dateStr variable and set it equal to the value of the dateBox element
+    let dateStr = dateBox.value;
+
+    // Fetch the data from the NASA API
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${dateStr}`)
+        .then(response => response.json()) // Parse the JSON text string
+        .then(json => showPicture(json)) // Pass the JSON object to showPicture
+        .catch(error => console.error(error)); // Display any errors in the console
+};
+
+// Create the showPicture() function
+function showPicture(json) {
+    // If the media type is a video
+    if (json.media_type === "video") {
+        imageBox.innerHTML = `<iframe src="${json.url}"></iframe>
+                              <h1>${json.title}</h1>
+                              <p>${json.explanation}</p>`;
+    } 
+    // If the media type is an image
+    else if (json.media_type === "image") {
+        imageBox.innerHTML = `<img src="${json.url}" class="nasa-img" />
+                              <h1>${json.title}</h1>
+                              <p>${json.explanation}</p>`;
+    } 
+    // For other media types
+    else {
+        imageBox.innerHTML = "Image not Available";
+    }
+}
+
+</script>
+<style>
+  #nasaImage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#nasaImage img {
+  max-width: 90%; /* Adjusts to fit the container */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure iframe videos scale properly */
+#nasaImage iframe {
+  width: 90%;
+  height: 400px;
+  max-width: 800px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  #nasaImage img {
+    max-width: 100%;
+  }
+  #nasaImage iframe {
+    height: 300px;
+  }
+}
+
+</style>

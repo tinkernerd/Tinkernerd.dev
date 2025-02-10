@@ -1,0 +1,42 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+
+const services = [
+  { name: "Basic", speed: "0 Mbps" },
+  { name: "Express", speed: "100 Mbps" },
+  { name: "Extreme", speed: "500 Mbps" },
+  { name: "Ultimate", speed: "1 Gig" },
+];
+---
+
+<ProjectLayout
+  title="Dynamic Table"
+  description="A dynamic table component built with JS."
+>
+  <header>
+    <h1>
+      Hands-on Project 1-2
+    </h1>
+  </header>
+
+  <article>
+    <h2>High-Speed Internet Plans</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Download Speed (Mbps)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {services.map(service => (
+          <tr>
+            <td>{service.name}</td>
+            <td>{service.speed}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </article>
+</ProjectLayout>

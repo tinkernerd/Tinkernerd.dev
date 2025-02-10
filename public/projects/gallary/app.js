@@ -1,16 +1,3 @@
-/*    JavaScript 7th Edition
-      Chapter 3
-      Project 03-02
-
-      Application to generate a slide gallery
-      Author: Nick Stull
-      Date:   2024.09.24
-      
-      Github Repo: tinkernerd/ISYS115
-
-      Filename: project03-02.js
-*/
-
 let captions = new Array(14);
 captions[0]="International Space Station fourth expansion [2009]";
 captions[1]="Assembling the International Space Station [1998]";

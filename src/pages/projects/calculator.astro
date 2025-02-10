@@ -1,0 +1,226 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout
+  title="Calculator"
+  description="A simple calculator app built with JS."
+>
+  <header>
+    <h1 class="centered">Calculator</h1>
+    <h2>Project Overview</h2>
+    <p>
+      This calculator project demonstrates a simple, interactive application
+      built with HTML, SCSS, and JavaScript. The calculator can handle basic
+      arithmetic operations such as addition, subtraction, multiplication, and
+      division.
+    </p>
+  </header>
+  <section>
+    <h2>Full Working Example</h2>
+    <div class="calculator">
+      <div class="calc-screen">
+        <div class="calc-input">0</div>
+        <div class="calc-result">0</div>
+      </div>
+
+      <div class="calc-keys">
+        <div class="row">
+          <div class="key col-xs-3"><a id="(">(</a></div>
+          <div class="key col-xs-3"><a id=")">)</a></div>
+          <div class="key col-xs-3"><a id="C">C</a></div>
+          <div class="key col-xs-3"><a id="/">/</a></div>
+        </div>
+        <div class="row">
+          <div class="key col-xs-3"><a id="7">7</a></div>
+          <div class="key col-xs-3"><a id="8">8</a></div>
+          <div class="key col-xs-3"><a id="9">9</a></div>
+          <div class="key col-xs-3"><a id="+">+</a></div>
+        </div>
+        <div class="row">
+          <div class="key col-xs-3"><a id="4">4</a></div>
+          <div class="key col-xs-3"><a id="5">5</a></div>
+          <div class="key col-xs-3"><a id="6">6</a></div>
+          <div class="key col-xs-3"><a id="-">-</a></div>
+        </div>
+        <div class="row">
+          <div class="key col-xs-3"><a id="1">1</a></div>
+          <div class="key col-xs-3"><a id="2">2</a></div>
+          <div class="key col-xs-3"><a id="3">3</a></div>
+          <div class="key col-xs-3"><a id="X">X</a></div>
+        </div>
+        <div class="row">
+          <div class="key left col-xs-6"><a id="=">=</a></div>
+          <div class="key middle col-xs-3"><a id="0">0</a></div>
+          <div class="key right col-xs-3"><a id=".">.</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Explanation</h2>
+    <p>
+      The calculator consists of three main parts: the display, the number and
+      operator buttons, and the logic implemented in JavaScript. The SCSS
+      ensures that the calculator is styled and responsive for various screen
+      sizes.
+    </p>
+  </section>
+  <section>
+    <h3>
+      HTML Structure&nbsp;<a
+        href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/calculator.html"
+        class="github-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub Logo"
+          class="github-logo"
+        />
+        <code>calculator</code></a
+      >
+    </h3>
+    <p>
+      The HTML structure includes a container for the display and a grid layout
+      for the buttons. Each button has a data-value attribute to handle its
+      function programmatically.
+    </p>
+  </section>
+  <section>
+    <h3>
+      JavaScript Code Explanation&nbsp;<a
+        href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/calculator.html"
+        class="github-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub Logo"
+          class="github-logo"
+        />
+        <code>calculator</code></a
+      >
+    </h3>
+    <p>
+      The JavaScript file adds interactivity by reading the button clicks,
+      updating the display, and performing calculations based on user input. The
+      logic ensures proper handling of multiple operators and edge cases.
+    </p>
+  </section>
+</ProjectLayout>
+
+<script is:inline>
+  document.onkeydown = function (e) {
+  console.log(e)
+  let key = document.getElementById(e.key)
+  key.click()
+}
+let keys = document.querySelectorAll('.key a, .corner-key a');
+keys.forEach(function (key) {
+  key.onclick = function (e) {
+      let keyVal = e.srcElement.innerHTML;
+      let input = document.querySelector('.calc-input');
+      let result = document.querySelector('.calc-result')
+
+      if (keyVal == "C") {
+          input.innerHTML = "0";
+          result.innerHTML = "0";
+      } else {
+          if (keyVal != "=") {
+              console.log(input.innerHTML)
+              if (input.innerHTML == "0") {
+                  input.innerHTML = keyVal;
+              } else {
+                  input.innerHTML += ` ${keyVal}`;
+              }
+          } else {
+              let inputVal = input.innerHTML.replace(/X/g, "*").replace(/ /g, "")
+              console.log(inputVal)
+              result.innerHTML = eval(inputVal)
+              input.innerHTML = "0";
+          }
+      }
+
+  }
+});
+
+</script>
+
+<style>
+  .calculator {
+  max-width: 400px;
+  /*margin: 2rem auto;*/
+  margin-left:"auto";
+  background: #f3f3f3;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px #387c3b;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+
+  .calc-screen {
+      background: #2d2d2d;
+      color: #fff;
+      padding: 1rem;
+      text-align: right;
+      font-family: "Courier New", Courier, monospace;
+
+      .calc-input {
+          font-size: 1.5rem;
+          font-weight: bold;
+          line-height: 1.5;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+
+      .calc-result {
+          font-size: 1.25rem;
+          opacity: 0.7;
+      }
+  }
+
+  .calc-keys {
+      padding: 1rem;
+
+      .row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+
+          .key {
+              flex: 1;
+              margin: 0.25rem;
+              text-align: center;
+
+              a {
+                  display: block;
+                  background: #4caf50;
+                  color: white;
+                  text-decoration: none;
+                  padding: 0.75rem;
+                  border-radius: 4px;
+                  font-size: 1.2rem;
+                  font-weight: bold;
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                  transition: background 0.2s, transform 0.1s;
+
+                  &:hover {
+                      background: #45a049;
+                  }
+
+                  &:active {
+                      transform: scale(0.98);
+                  }
+              }
+          }
+
+          .corner-key {
+              flex: 2; /* Larger buttons for corner keys */
+          }
+
+      }
+  }
+}
+</style>
