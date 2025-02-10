@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Metar</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/css/github.css" />
+    <script src="./app.js" type="module"></script>
+  </head>
+  <body>
+    <div id="main">
+                    <h1 class="centered">METAR Data for Multiple Airports</h1>
+            <div class="callout info">
+                <p>
+                    <strong>Info:</strong> The table below shows the latest METAR data for selected airports.
+                    This data is refreshed every hour.
+                </p>
+                <p>The project currently doesn't work until I understand .env files. Apparently you shouldn't give out api keys. (sarcasm)</p>
+            </div>
+        <table class="live-metar">
+            <thead>
+                <tr>
+                    <th class="top-text">Airport</th>
+                    <th class="top-text">METAR</th>
+                </tr>
+            </thead>
+            <tbody id="metar-table-body">
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+</div> 
+
+<p id="info"></p>
+<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+<script src="/scripts/projectInfo.js" type="module"></script>
+</body>
+</html>

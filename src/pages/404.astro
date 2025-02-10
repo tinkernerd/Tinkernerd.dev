@@ -1,76 +1,31 @@
 ---
-import "../styles/modules/_errorpage.scss";
-import SEO from "../components/SEO.astro";
+// component imports
+import Link from "../components/Link.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="https://media.tinkernerd.dev/logos/tn.png" />
-
-        <SEO
-            description="🚀 It's the 404 Page, I ain't saying more than that. :)"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap"
-            rel="stylesheet"
-        />
-        <script
-            src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"></script>
-        <title>Page Not Found :(</title>
-    </head>
-    <body>
-        <main>
-            <h1>404: Page Not Found</h1>
-            <h2>UH OH! You're lost.</h2>
-            <p>
-                The page you are looking for does not exist. How you got here is
-                a mystery. <br /> But you can click
-                <a href="/" id="home" role="button">Here</a>
-                to go back to the homepage or click on the GIF below for a surprise.<br
-                />
-            </p>
-
-            <img
-                id="chewy-gif"
-                src="https://media.tinkernerd.dev/gifs/bernie.gif"
-                width="498"
-                height="280"
-                alt="Impossible. Perhaps the archives are incomplete."
-            />
-        </main>
-        <script lang="javascript">
-            const chew = new Audio(
-                "https://media.tinkernerd.dev/sounds/chewbacca.mp3",
-            );
-
-            // Add click event listener to the GIF
-            document
-                .getElementById("chewy-gif")
-                .addEventListener("click", () => {
-                    chew.currentTime = 0;
-                    chew.play();
-                });
-
-            // Add click event listener to the "Home" button
-            document
-                .getElementById("home")
-                .addEventListener("click", (event) => {
-                    event.preventDefault(); // Prevent immediate navigation
-                    document.title = "Redirecting..."; // Change tab title
-                    chew.currentTime = 0;
-                    chew.play();
-
-                    // Wait for the sound to finish before navigating
-                    chew.onended = () => {
-                        window.location.href = "/";
-                    };
-                });
-        </script>
-    </body>
-</html>
+<MainLayout title="Page Not Found" description="404 Not Found" footer={false}>
+  <div
+    class="container"
+    style={{
+      display: "grid",
+      placeItems: "center",
+      textAlign: "center",
+      gap: "var(--space-sm)",
+    }}
+  >
+    <div>
+      <h1 class="h1">Welp, this is awkward!</h1>
+      <p>We seem to have misplaced something…</p>
+    </div>
+    <Link
+      href="/"
+      style="secondary"
+      text="Go Home"
+      icon={{
+        name: "tabler:home",
+        side: "right",
+      }}
+    />
+  </div>
+</MainLayout>

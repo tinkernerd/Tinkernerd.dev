@@ -1,0 +1,25 @@
+---
+import HeadCommon from "@/components/HeadCommon.astro";
+import Header from "../components/Header/Header.astro";
+import MainFooter from "@/components/Footer/MainFooter.astro";
+const {
+    title,
+    description,
+    footer: showFooter = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+    <HeadCommon {title} {description} />
+    <script is:inline src="/scripts/projectInfo.js" type="module"></script>
+	</head>
+	<body>
+    <Header />
+    <main>
+      <slot />
+		</main>
+    {showFooter && <MainFooter />}
+	</body>
+</html>

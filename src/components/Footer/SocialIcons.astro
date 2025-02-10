@@ -1,0 +1,26 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { socialLinks } from '@/site-config';
+
+const socialLinksArray = Object.values(socialLinks);
+---
+
+<div class="social-icons">
+  {socialLinksArray.map((link) => (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block text-muted-foreground transition-all hover:text-muted-foreground/75"
+      aria-label={link.title}
+    >
+      <Icon 
+        name={link.icon} 
+        width="1em" 
+        height="1em" 
+        class="h-4 w-4 flex-shrink-0" 
+      />
+    </a>
+  ))}
+</div>

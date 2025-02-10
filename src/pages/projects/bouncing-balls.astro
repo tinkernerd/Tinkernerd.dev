@@ -1,0 +1,183 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout
+  title="Bouncing Balls"
+  description="A simple bouncing balls simulation using JavaScript and HTML5 canvas.">
+  <h1 class="centered">Book Review</h1>
+  <section>
+      <h2>Project Overview</h2>
+      <p>The "Bouncing Balls" project is a fun and interactive example that showcases how to create moving elements within a
+      defined container using JavaScript. The project dynamically generates balls that bounce within the boundaries of a
+      container, with velocity and direction changing upon collision with the walls. This project is a great way to understand
+      concepts like object-oriented programming, DOM manipulation, and basic animation.
+      </p>
+  </section>
+  <section>
+      <h2>Full Working Example</h2>
+      <div class="bouncing-balls">
+              <h1>Bouncing Balls</h1>
+              <div id="box"></div>
+              <button id="addBall">Add Ball</button>
+      </div>
+  </section>
+  <section>
+      <h2>Explanation</h2>
+      <p>The "Bouncing Balls" project consists of a container element with a button to add balls dynamically. Each ball is
+          represented by a <code>div</code> element with a class of "ball" and a random color. The ball's position and velocity
+          are controlled by the <code>Ball</code> class, which defines the ball's radius, position, and velocity in the x and y
+          directions. The <code>moveWithin</code> method of the <code>Ball</code> class updates the ball's position based on its velocity and reverses the velocity when the ball collides with the container's boundaries. The <code>rand</code> function generates random values within a specified range. The <code>DOMContentLoaded</code> event listener initializes the project by adding event listeners to the "Add Ball" button and creating new balls with random initial positions and velocities. The <code>setInterval</code> function updates the ball's position every 25 milliseconds, creating the bouncing effect.</p> 
+      </section><section>
+          <h3>HTML Structure&nbsp;<a
+              href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/bouncing-balls.html"
+              class="github-button" target="_blank" rel="noopener noreferrer">
+              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                  alt="GitHub Logo" class="github-logo">
+              <code>bouncing-balls</code></a></h3>
+              <p>The HTML structure defines the container for the bouncing balls and a button to add new balls dynamically.</p>
+              <ul>
+                  <li><strong><code>&lt;div class="balls"&gt;</code></strong>: Acts as the wrapper for the project layout.</li>
+                  <li><strong><code>&lt;div id="box"&gt;</code></strong>: The container where the balls will bounce.</li>
+                  <li><strong><code>&lt;button id="addBall"&gt;</code></strong>: A button to add new balls to the container.</li>
+              </ul>
+  </section>
+  <section>
+      <h3>JavaScript Code Explanation&nbsp;<a
+          href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/bouncing-balls.html"
+          class="github-button" target="_blank" rel="noopener noreferrer">
+          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              alt="GitHub Logo" class="github-logo">
+          <code>bouncing-balls</code></a></h3>
+          <div>
+              <p>The JavaScript code is responsible for creating, styling, and animating the balls within the container. Here's a
+                  breakdown:</p>
+          <ul>
+              <li>Define the size of the balls and container dimensions.</li>
+              <li><strong>Constructor</strong>: Initializes ball properties like radius, position, and velocity.</li>
+              <li><strong><code>moveWithin</code> Method</strong>: Handles collision detection and updates the ball's position based on its velocity.</li>
+              <li>A button click creates a new <code>Ball</code> object, assigns it random velocity, and appends it to the
+                  container.</li>
+              <li>The ball's position is updated at regular intervals using <code>setInterval</code>.</li>
+              <li>Generates a random value for the ball's velocity within a specified range.</li>
+          </ul>
+  </section>
+</ProjectLayout>
+<script is:inline>
+  const BALL_RADIUS = 60; // radius of the ball in pixels
+const BOX_HEIGHT = 400; // height of the container in pixels
+const BOX_WIDTH = 800;  // width of the container in pixels
+
+// Ball class
+class Ball {
+    constructor(size) {
+        this.radius = size;
+        this.xPos = null;
+        this.yPos = null;
+        this.xVelocity = null;
+        this.yVelocity = null;
+    }
+
+    moveWithin(container) {
+        let ballTop = this.yPos;
+        let ballLeft = this.xPos;
+        let ballBottom = this.yPos + this.radius;
+        let ballRight = this.xPos + this.radius;
+
+        if (ballTop <= 0 || ballBottom >= container.height) {
+            this.yVelocity = -this.yVelocity;
+        }
+
+        if (ballLeft <= 0 || ballRight >= container.width) {
+            this.xVelocity = -this.xVelocity;
+        }
+
+        this.xPos += this.xVelocity;
+        this.yPos += this.yVelocity;
+    }
+}
+
+// Helper function for random values
+function rand(minVal, maxVal) {
+    return Math.random() * (maxVal - minVal) + minVal;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const boxElement = document.getElementById("box");
+    const addBallButton = document.getElementById("addBall");
+
+    addBallButton.addEventListener("click", () => {
+        const ballElement = document.createElement("div");
+        ballElement.className = "ball";
+        ballElement.style.width = `${BALL_RADIUS}px`;
+        ballElement.style.height = `${BALL_RADIUS}px`;
+        ballElement.style.backgroundColor = `hsl(${rand(0, 360)}, 70%, 50%)`;
+
+        const newBall = new Ball(BALL_RADIUS);
+        newBall.xPos = (BOX_WIDTH - BALL_RADIUS) / 2;
+        newBall.yPos = (BOX_HEIGHT - BALL_RADIUS) / 2;
+        newBall.xVelocity = rand(-5, 5);
+        newBall.yVelocity = rand(-5, 5);
+
+        ballElement.style.left = `${newBall.xPos}px`;
+        ballElement.style.top = `${newBall.yPos}px`;
+
+        boxElement.appendChild(ballElement);
+
+        setInterval(() => {
+            newBall.moveWithin({ width: BOX_WIDTH, height: BOX_HEIGHT });
+            ballElement.style.left = `${newBall.xPos}px`;
+            ballElement.style.top = `${newBall.yPos}px`;
+        }, 25);
+    });
+});
+</script>
+<style>
+  .bouncing-balls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  /* Optional, to give some inner spacing */
+  width: fit-content;
+  /* Makes the container fit the size of its children */
+  /* margin: auto;*/
+  /* Centers the container horizontally if needed */
+
+  #box {
+      width: 800px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid black;
+      margin-top: 20px;
+  }
+
+  button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #387c3b;
+      /* Preferred green color */
+      color: white;
+      transition: background-color 0.3s;
+
+      &:hover {
+          background-color: #2c6230;
+          /* Adjusted hover color */
+      }
+  }
+
+  .ball {
+      position: absolute;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+}
+</style>

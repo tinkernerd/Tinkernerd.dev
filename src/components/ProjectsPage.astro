@@ -1,0 +1,57 @@
+---
+import projects from "@/data/projects";
+
+// Convert the projects object into an array of categories
+const categories = Object.entries(projects);
+---
+
+<div class="projects">
+  {categories.map(([categoryName, projectList]) => (
+    <section>
+      <h2>{categoryName.replace(/([A-Z])/g, ' $1').trim()}</h2>
+      {projectList.filter(project => !project.draft).map((project) => (
+        <div data-key={project.id}>
+          <header class="project-header">
+            <h3 class="project-title">{project.name}</h3>
+            <small class="badges">
+              <a class="badge" href={`/projects/${project.url}`} rel="noopener noreferrer">Demo</a>
+              <a class="badge" href={project.code} target="_blank" rel="noopener noreferrer">Code</a>
+            </small>
+          </header>
+          <p>{project.description}</p>
+          <hr/>
+        </div>
+      ))}
+    </section>
+  ))}
+</div>
+
+<style>
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    border-bottom: 2px solid var(--theme-accent);
+    padding-bottom: 5px;
+    text-transform: capitalize;
+  }
+</style>

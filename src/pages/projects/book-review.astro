@@ -1,0 +1,143 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout
+  title="Book Review"
+  description="A book review website built with Next.js and Tailwind CSS."
+>
+  <h1 class="centered">Book Review</h1>
+  <section>
+    <h2>Project Overview</h2>
+    <p>
+      This script updates a character count in real time as a user types into a
+      textarea element. It also displays a warning if the character count
+      exceeds a certain limit.
+    </p>
+  </section>
+  <section>
+    <h2>Full Working Example</h2>
+    <div class="book-review">
+      <textarea
+        id="comment"
+        rows="5"
+        cols="40"
+        placeholder="Describe the legend of your quest..."
+        oninput="updateCount()"></textarea>
+
+      <div id="countLabel">
+        Character Count: <span id="countValue">0</span> / <span id="limit"
+          >100</span
+        >
+      </div>
+
+      <div id="warningBox" style="display: none;">
+        Your review exceeds the maximum length.
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Explanation</h2>
+    <h3>
+      HTML Structure&nbsp;<a
+        href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/book-review.html"
+        class="github-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub Logo"
+          class="github-logo"
+        />
+        <code>book-review</code></a>
+    </h3>
+    <p>
+      The HTML consists of a textarea element where the user types in their
+      comment. The text area is labeled with a character count and a limit of
+      1000 characters. The actual character count is displayed in real time as
+      the user types. When the character count is exceeded, a warning message is
+      displayed.
+    </p>
+    <h3>
+      JavaScript Code Explanation&nbsp;<a
+        href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/book-review.html"
+        class="github-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub Logo"
+          class="github-logo"
+        />
+        <code>book-review</code></a>
+    </h3>
+    <p>
+      TThe JavaScript code first sets the maximum length of the review to 100
+      characters. It references the HTML elements of the character count box and
+      warning box. The script then adds an event listener for the <code
+        >keyup</code
+      > event on the comment box. When this event is triggered by the user typing,
+      the <code> updateCount </code> function is called. The <code>
+        updateCount
+      </code> function counts the number of characters in the comment box and updates
+      the character count box. If the character count exceeds the maximum review
+      length, the script displays a warning message.
+    </p>
+  </section>
+</ProjectLayout>
+<script is:inline>
+  const MAX_REVIEW = 100;
+
+// Function to update character count and display warning if necessary
+function updateCount() {
+    const textarea = document.getElementById("comment");
+    const countValue = document.getElementById("countValue");
+    const warningBox = document.getElementById("warningBox");
+
+    const comment = textarea.value;
+    const charCount = comment.replace(/\s/g, "").length;
+
+    countValue.textContent = charCount;
+
+    if (charCount > MAX_REVIEW) {
+        warningBox.style.display = "block";
+    } else {
+        warningBox.style.display = "none";
+    }
+}
+</script>
+<style>
+  .book-review {
+  max-width: calc(100% + 20px); /* Ensure container is 20px wider than the textarea */
+  width: 400px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+  textarea {
+      width: calc(100% - 20px); /* Adjust textarea width to account for container padding */
+      padding: 10px;
+      font-size: 14px;
+      border: 2px solid #ddd;
+      border-radius: 20px;
+      resize: none;
+      color: var(--info-text); /* Dynamic text color */
+  }
+
+  #countLabel {
+      margin-top: 10px;
+      font-size: 14px;
+  }
+
+  #warningBox {
+      margin-top: 10px;
+      color: red;
+      font-weight: bold;
+  }
+}
+</style>

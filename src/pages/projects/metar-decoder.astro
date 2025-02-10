@@ -1,0 +1,77 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+const apiKey = import.meta.env.PUBLIC_AVWX_API_KEY;
+---
+
+<ProjectLayout title="METAR Decoder">
+  <h1 class="centered">METAR Decoder</h1>
+
+  <div class="input-section">
+    <form id="metarForm">
+      <label for="airportCode">Enter ICAO Code:</label>
+      <input type="text" id="airportCode" name="airportCode" placeholder="e.g., KSBN" required>
+      <button type="submit">Get METAR</button>
+    </form>
+  </div>
+
+  <h2>Decoded METAR Data</h2>
+  <table class="metar-table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Raw METAR</strong></td><td id="rawMetar">—</td></tr>
+      <tr><td><strong>Temperature</strong></td><td id="temperature">—</td></tr>
+      <tr><td><strong>Dew Point</strong></td><td id="dewPoint">—</td></tr>
+      <tr><td><strong>Wind</strong></td><td id="wind">—</td></tr>
+      <tr><td><strong>Visibility</strong></td><td id="visibility">—</td></tr>
+      <tr><td><strong>Pressure</strong></td><td id="pressure">—</td></tr>
+      <tr><td><strong>Flight Rules</strong></td><td id="flightRules">—</td></tr>
+      <tr><td><strong>Clouds</strong></td><td id="clouds">—</td></tr>
+      <tr><td><strong>Remarks</strong></td><td id="remarks">—</td></tr>
+    </tbody>
+  </table>
+
+  <script is:inline>
+    document.getElementById("metarForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const airport = document.getElementById("airportCode").value.toUpperCase();
+      console.log("Sending request for airport:", airport);
+
+      try {
+        const response = await fetch(`/api/metar?airport=${encodeURIComponent(airport)}`);
+        console.log("Fetch Response:", response);
+
+        const data = await response.json();
+        console.log("API Response:", data);
+
+        if (data.error) {
+          alert("Error: " + data.error);
+          return;
+        }
+
+        // ✅ Update only the right-hand column of the table
+        document.getElementById("rawMetar").textContent = data.raw || "N/A";
+        document.getElementById("temperature").textContent = data.temperature?.value + "°C" ?? "N/A";
+        document.getElementById("dewPoint").textContent = data.dewpoint?.value + "°C" ?? "N/A";
+        document.getElementById("wind").textContent = `${data.wind_direction.repr}° at ${data.wind_speed.repr} knots` ?? "N/A";
+        document.getElementById("visibility").textContent = data.visibility?.value + " miles" ?? "N/A";
+        document.getElementById("pressure").textContent = data.altimeter?.value + " inHg" ?? "N/A";
+        document.getElementById("flightRules").textContent = data.flight_rules ?? "N/A";
+        document.getElementById("clouds").textContent = data.clouds?.map(cloud => cloud.repr).join(", ") || "Clear";
+        document.getElementById("remarks").textContent = data.remarks ?? "N/A";
+      } catch (error) {
+        console.error("Error retrieving METAR:", error);
+        alert("Error retrieving METAR data.");
+      }
+    });
+  </script>
+
+  <style>
+    .input-section { margin-bottom: 20px; }
+</ProjectLayout>

@@ -1,17 +1,9 @@
-import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypePresetMinify from 'rehype-preset-minify'
-import react from '@astrojs/react'
+// @ts-check
+import { defineConfig, envField } from 'astro/config';
 import vercel from '@astrojs/vercel';
+import icon from 'astro-icon';
 
-const rehypeExternalLinksConfig = [
-    rehypeExternalLinks,
-    { target: '_blank', rel: ['noopener', 'noreferrer'] }
-]
 // https://astro.build/config
-
 export default defineConfig({
   site: 'https://tinkernerd.dev/',
   trailingSlash: 'never',
@@ -20,19 +12,12 @@ export default defineConfig({
   server: {
       port: parseInt(process.env.PORT || '3000')
 	},
-
   integrations: [
-      mdx({
-          rehypePlugins: [ rehypeExternalLinksConfig, rehypePresetMinify ]
-      }),
-      react(),
-      sitemap({
-      })
-	],
-
-  markdown: {
-      smartypants: true,
-      rehypePlugins: [ rehypeExternalLinksConfig ],
-	},
-
+    icon()
+  ],
+  env: {
+    schema: {
+      PUBLIC_AVWX_API_KEY: envField.string({ context: "client", access: "public" }),
+    }
+  },
 });
