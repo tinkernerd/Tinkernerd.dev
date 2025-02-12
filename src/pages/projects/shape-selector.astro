@@ -1,0 +1,87 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout
+  title="Shape Selector"
+  description="A simple shape selector app built with JavaScript."
+>
+  <div class="shape-selector">
+    <header>
+      <h1>Maximum Effort, Minimal Shapes</h1>
+    </header>
+
+    <article>
+      <h2>Pick a shape</h2>
+      <div id="square"></div>
+      <div id="triangle"></div>
+      <div id="circle"></div>
+    </article>
+
+    <p id="feedback"></p>
+  </div>
+</ProjectLayout>
+
+<script is:inline>
+  const feedbackMessages = {
+    square: [
+      "Oh look, a square. Just like your personality. Kidding. Maybe.",
+      "Sharp edges, no nonsense—just like a well-cut grilled cheese.",
+      "Congrats, you found the square! Next challenge: talking to people.",
+    ],
+    triangle: [
+      "Triangles. The Illuminati of shapes. Stay woke, bud.",
+      "Ah yes, the strongest shape. Like my caffeine addiction.",
+      "Three sides, three angles, three chances to impress me. Still failing.",
+    ],
+    circle: [
+      "A perfect circle? Bet you still color outside the lines.",
+      "Round and pointless. Like a meeting that should’ve been an email.",
+      "You found the circle. Cool. Now go do something with your life.",
+    ]
+  };
+
+  ["square", "triangle", "circle"].forEach(function(shape) {
+      document.getElementById(shape).addEventListener("mouseover", function() {
+          const messages = feedbackMessages[shape];
+          document.getElementById("feedback").innerHTML = messages[Math.floor(Math.random() * messages.length)];
+      });
+      document.getElementById(shape).addEventListener("mouseout", function() {
+          document.getElementById("feedback").innerHTML = "";
+      });
+  });
+</script>
+
+
+<style>
+.shape-selector {
+  text-align: center;
+}
+
+#square {
+  width: 220px;
+  height: 220px;
+  background: red;
+  display: inline-block;
+  margin: 10px;
+}
+
+#triangle {
+  width: 0; 
+  height: 0; 
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 190px solid yellow;
+  display: inline-block;
+  margin: 10px;
+}
+
+#circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: blue;
+  display: inline-block;
+  margin: 10px;
+}
+</style>

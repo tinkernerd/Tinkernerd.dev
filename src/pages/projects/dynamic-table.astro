@@ -11,16 +11,22 @@ const services = [
 
 <ProjectLayout
   title="Dynamic Table"
-  description="A dynamic table component built with JS."
+  description="A dynamic table component built with Astro."
 >
   <header>
-    <h1>
-      Hands-on Project 1-2
-    </h1>
+    <h1>Astro Dynamic Table</h1>
   </header>
 
   <article>
     <h2>High-Speed Internet Plans</h2>
+
+    <p>
+      This project demonstrates how to dynamically generate a table in Astro using JavaScript objects.
+      Instead of manually writing each table row, we define an array containing service plan details and
+      use Astro’s mapping syntax to generate the rows dynamically.
+    </p>
+
+    <h3>Dynamic Table</h3>
 
     <table>
       <thead>
@@ -38,5 +44,48 @@ const services = [
         ))}
       </tbody>
     </table>
+
+    <h3>How It Works</h3>
+    <p>
+      Instead of hardcoding table rows, this project takes advantage of an array of objects, where each object
+      represents a service plan. Astro’s <code>&#123;services.map()&#125;</code> function is then used to loop through this data and generate
+      table rows dynamically. This approach makes it easier to modify or expand the service offerings without
+      changing the table structure.
+    </p>
+    <p>To see the source code:       <a
+      href="https://github.com/tinkernerd/tinkernerd.dev/tree/master/src/pages/projects/dynamic-table.astro"
+      class="github-button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        alt="GitHub Logo"
+        class="github-logo"
+      />
+      <code>dynamic-table.astro</code>
+    </a></p>
+
+    <h3>Key Concepts</h3>
+    <ul>
+      <li>
+        <strong>Data Management:</strong> The service plans are stored in an array of objects in Astro’s frontmatter.
+      </li>
+      <li>
+        <strong>Dynamic Rendering:</strong> Astro’s <code>&#123;services.map()&#125;</code> function loops through the array and
+        generates the necessary `<tr>` and `<td>` elements dynamically.
+      </li>
+      <li>
+        <strong>Efficiency:</strong> This method reduces repetitive code, making the table easier to maintain.
+      </li>
+      <li>
+        <strong>Scalability:</strong> If new service plans need to be added, updating the array automatically
+        reflects changes in the table.
+      </li>
+    </ul>
+
+
+
+
   </article>
 </ProjectLayout>

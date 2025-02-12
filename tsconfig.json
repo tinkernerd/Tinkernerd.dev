@@ -37,7 +37,7 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "react"
   },
   "exclude": [
     "dist"

@@ -65,89 +65,77 @@ import ProjectLayout from "@/layouts/ProjectLayout.astro";
       ensures that the calculator is styled and responsive for various screen
       sizes.
     </p>
+    <p>For Source Code: <a
+      href="https://github.com/tinkernerd/tinkernerd.dev/tree/master/src/pages/projects/calculator.astro"
+      class="github-button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        alt="GitHub Logo"
+        class="github-logo"
+      />
+      <code>calculator</code></a
+    > </p>
   </section>
-  <section>
-    <h3>
-      HTML Structure&nbsp;<a
-        href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/calculator.html"
-        class="github-button"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-          alt="GitHub Logo"
-          class="github-logo"
-        />
-        <code>calculator</code></a
-      >
-    </h3>
-    <p>
-      The HTML structure includes a container for the display and a grid layout
-      for the buttons. Each button has a data-value attribute to handle its
-      function programmatically.
-    </p>
-  </section>
-  <section>
-    <h3>
-      JavaScript Code Explanation&nbsp;<a
-        href="https://github.com/tinkernerd/isys115/tree/master/src/views/projects/calculator.html"
-        class="github-button"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-          alt="GitHub Logo"
-          class="github-logo"
-        />
-        <code>calculator</code></a
-      >
-    </h3>
-    <p>
-      The JavaScript file adds interactivity by reading the button clicks,
-      updating the display, and performing calculations based on user input. The
-      logic ensures proper handling of multiple operators and edge cases.
-    </p>
-  </section>
+
 </ProjectLayout>
 
 <script is:inline>
   document.onkeydown = function (e) {
-  console.log(e)
-  let key = document.getElementById(e.key)
-  key.click()
-}
-let keys = document.querySelectorAll('.key a, .corner-key a');
-keys.forEach(function (key) {
-  key.onclick = function (e) {
-      let keyVal = e.srcElement.innerHTML;
-      let input = document.querySelector('.calc-input');
-      let result = document.querySelector('.calc-result')
+      console.log(e.key);
+      
+      let key = e.key;
 
-      if (keyVal == "C") {
-          input.innerHTML = "0";
-          result.innerHTML = "0";
-      } else {
-          if (keyVal != "=") {
-              console.log(input.innerHTML)
-              if (input.innerHTML == "0") {
-                  input.innerHTML = keyVal;
-              } else {
-                  input.innerHTML += ` ${keyVal}`;
-              }
+      // Map certain keyboard keys to calculator equivalents
+      if (key === "Enter") key = "=";
+      if (key === "Backspace") {
+          let input = document.querySelector(".calc-input");
+          if (input.innerHTML.length > 1) {
+              input.innerHTML = input.innerHTML.slice(0, -1);
           } else {
-              let inputVal = input.innerHTML.replace(/X/g, "*").replace(/ /g, "")
-              console.log(inputVal)
-              result.innerHTML = eval(inputVal)
               input.innerHTML = "0";
           }
+          return;
       }
+      if (key === "*") key = "X"; // Map '*' to 'X' to match button ID
 
-  }
-});
+      let button = document.getElementById(key);
+      if (button) {
+          button.click();
+      }
+  };
 
+  let keys = document.querySelectorAll(".key a, .corner-key a");
+  keys.forEach(function (key) {
+      key.onclick = function (e) {
+          let keyVal = e.srcElement.innerHTML;
+          let input = document.querySelector(".calc-input");
+          let result = document.querySelector(".calc-result");
+
+          if (keyVal == "C") {
+              input.innerHTML = "0";
+              result.innerHTML = "0";
+          } else {
+              if (keyVal != "=") {
+                  console.log(input.innerHTML);
+                  if (input.innerHTML == "0") {
+                      input.innerHTML = keyVal;
+                  } else {
+                      input.innerHTML += ` ${keyVal}`;
+                  }
+              } else {
+                  let inputVal = input.innerHTML.replace(/X/g, "*").replace(/ /g, "");
+                  console.log(inputVal);
+                  result.innerHTML = eval(inputVal);
+                  input.innerHTML = "0";
+              }
+          }
+      };
+  });
 </script>
+
 
 <style>
   .calculator {
@@ -156,7 +144,7 @@ keys.forEach(function (key) {
   margin-left:"auto";
   background: #f3f3f3;
   border-radius: 8px;
-  box-shadow: 0 4px 10px #387c3b;
+  box-shadow: 0 4px 10px var(--theme-accent);;
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
 
@@ -196,7 +184,7 @@ keys.forEach(function (key) {
 
               a {
                   display: block;
-                  background: #4caf50;
+                  background: var(--theme-accent);
                   color: white;
                   text-decoration: none;
                   padding: 0.75rem;
@@ -207,7 +195,7 @@ keys.forEach(function (key) {
                   transition: background 0.2s, transform 0.1s;
 
                   &:hover {
-                      background: #45a049;
+                      background: var(--theme-accent-muted);
                   }
 
                   &:active {

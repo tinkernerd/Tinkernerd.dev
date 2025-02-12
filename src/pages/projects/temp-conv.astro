@@ -1,0 +1,152 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout
+  title="Temperature Converter"
+  description="A simple temperature converter app built with JavaScript."
+>
+  <div class="temp-conv">
+    <header>
+      <h1>Temperature Converter</h1>
+    </header>
+
+    <div class="converter-container">
+      <div>
+        <label for="fValue"><h3>Temp in °F</h3></label>
+        <input type="number" id="fValue" value="32" />
+      </div>
+      <div id="arrow">&harr;</div>
+      <div>
+        <label for="cValue"><h3>Temp in °C</h3></label>
+        <input type="number" id="cValue" value="0" />
+      </div>
+    </div>
+
+    <p class="info-text">
+      Enter a Fahrenheit or Celsius temperature in either input box. <br/> Press Tab to convert.<br />
+      Try going below 30/0 or above 80/26.7 to see the color change.
+    </p>
+  </div>
+</ProjectLayout>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", function () {
+  const fValueInput = document.getElementById("fValue");
+  const cValueInput = document.getElementById("cValue");
+  const header = document.querySelector(".temp-conv header");
+
+  function FahrenheitToCelsius(f) {
+    return ((f - 32) / 1.8).toFixed(2);
+  }
+
+  function CelsiusToFahrenheit(c) {
+    return (c * 1.8 + 32).toFixed(2);
+  }
+
+  function updateHeaderColor() {
+    const fValue = parseFloat(fValueInput.value);
+    if (fValue < 32) {
+      header.classList.add("blue");
+      header.classList.remove("yellow", "red");
+    } else if (fValue > 80) {
+      header.classList.add("red");
+      header.classList.remove("yellow", "blue");
+    } else {
+      header.classList.add("yellow");
+      header.classList.remove("blue", "red");
+    }
+  }
+
+  function convertFtoC() {
+    cValueInput.value = FahrenheitToCelsius(parseFloat(fValueInput.value));
+    updateHeaderColor();
+  }
+
+  function convertCtoF() {
+    fValueInput.value = CelsiusToFahrenheit(parseFloat(cValueInput.value));
+    updateHeaderColor();
+  }
+
+  fValueInput.addEventListener("input", convertFtoC);
+  cValueInput.addEventListener("input", convertCtoF);
+
+  // Initial check
+  updateHeaderColor();
+});
+</script>
+<style>
+  .temp-conv {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 100px auto;
+  box-shadow: 0 4px 6px var(--theme-accent);
+}
+
+.temp-conv header {
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.converter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.converter-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  width: 100px;
+  padding: 8px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  border-color: #387c3b;
+  outline: none;
+}
+
+#arrow {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.info-text {
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+/* Header color transitions */
+.temp-conv header.blue {
+  background-color: #0099ff;
+  color: #fff;
+}
+
+.temp-conv header.yellow {
+  background-color: #f7d142;
+  color: #333;
+}
+
+.temp-conv header.red {
+  background-color: #ff5733;
+  color: #fff;
+}
+
+</style>

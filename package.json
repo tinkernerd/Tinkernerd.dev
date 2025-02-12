@@ -13,9 +13,14 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/react": "^4.2.0",
     "@astrojs/vercel": "^8.0.6",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "astro": "^5.2.5",
     "astro-icon": "^1.1.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sass": "^1.84.0"
   },
   "devDependencies": {
