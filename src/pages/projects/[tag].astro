@@ -1,0 +1,50 @@
+---
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "dynamic",
+  };
+}
+
+const { tag = '' } = Astro.params;
+
+import MainLayout from "@/layouts/MainLayout.astro";
+import projects from "@/data/projects";
+import ProjectCard from "@/components/ProjectCard.astro"; // Import the reusable card component
+
+// Normalize tag case-insensitively
+const normalizedTag = tag.toLowerCase();
+
+// Filter projects that contain the tag (case insensitive)
+const filteredProjects = projects.filter((project) =>
+  project.tags.some((t) => t.toLowerCase() === normalizedTag) 
+);
+const capitalizedTag = tag.charAt(0).toUpperCase() + tag.slice(1);
+
+---
+
+<MainLayout title={`Projects tagged: ${capitalizedTag}`}>
+  <header>
+    <h1>Projects Tagged: {capitalizedTag}</h1>
+    <p>Showing all projects tagged with <strong>{capitalizedTag}</strong>.</p>
+  </header>
+
+  <section class="projects">
+    {filteredProjects.length > 0 ? (
+      filteredProjects.map((project) => (
+        <ProjectCard {...project} />
+      ))
+    ) : (
+      <p>No projects found with this tag.</p>
+    )}
+  </section>
+</MainLayout>
+<style>
+  .projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+</style>
+

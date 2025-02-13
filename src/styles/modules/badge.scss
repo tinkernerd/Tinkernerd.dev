@@ -21,3 +21,18 @@
   }
 
 }
+
+.nbbadge {
+  --var: 0; 
+  //add variables for badge
+  padding: 4px 8px;
+  background-color: var(--badge-bg);
+  border-radius: var(--radius-sm);
+  color: var(--theme-text);
+  text-decoration: none;
+  letter-spacing: 0.054em;
+  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  margin-right: 0.5rem;
+
+}

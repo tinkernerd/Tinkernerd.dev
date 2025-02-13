@@ -1,0 +1,25 @@
+---
+interface Props {
+  text: string;
+  url: string;
+}
+
+const { text, url } = Astro.props;
+---
+
+<h3>
+  {text}&nbsp;
+  <a
+    href={url}
+    class="github-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      alt="GitHub Logo"
+      class="github-logo"
+    />
+    <code>{url.split('/').pop()?.replace('.html', '')}</code>
+  </a>
+</h3>

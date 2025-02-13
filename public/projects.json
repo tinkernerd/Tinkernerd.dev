@@ -4,28 +4,35 @@
       "btnColor": "192 47% 35%",
       "iconColor": "24 50% 97.9%",
       "url": "bill-total",
-      "code": "https://github.com/tinkernerd/bill-total"
+      "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/bill-review.astro"
   },
   {
       "id": "book-review",
       "btnColor": "192 47% 35%",
       "iconColor": "24 50% 97.9%",
       "url": "book-review",
-      "code": "https://github.com/tinkernerd/book-review"
+      "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/book-review.astro"
   },
   {
     "id": "bouncing-balls",
     "btnColor": "192 47% 35%",
     "iconColor": "24 50% 97.9%",
     "url": "bouncing-balls",
-    "code": "https://github.com/tinkernerd/jsbouncing-balls"
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/bouncing-balls.astro"
   },
   {
     "id": "calculator",
     "btnColor": "192 47% 35%",
     "iconColor": "24 50% 97.9%",
     "url": "calculator",
-    "code": "https://github.com/tinkernerd/js-calc"
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/calculator.astro"
+  },
+  {
+    "id":"dynamic-table",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "dynamic-table",
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/dynamic-table.astro"
   },
   {
     "id": "live-metar",
@@ -41,5 +48,40 @@
     "iconColor": "24 50% 97.9%",
     "url": "metar-decoder",
     "code": "https://github.com/tinkernerd/metar-decoder"
+  },
+  {
+    "id": "nasa-image-of-the-day",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "nasa-image-of-the-day",
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/nasa-image-of-the-day.astro"
+  },
+  {
+    "id": "password-generator",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "password-generator",
+    "code": "https://github.com/tinkernerd/PassGen"
+  },
+  {
+    "id":"shape-selector",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "shape-selector",
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/shape-selector.astro"
+  },
+  {
+    "id":"temp-converter",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "temp-conv",
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/temp-conv.astro"
+  },
+  {
+    "id":"timer",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "timer",
+    "code": "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/time.astro"
   }
 ]

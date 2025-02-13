@@ -1,0 +1,107 @@
+---
+// Props received from the parent component
+export interface Props {
+  name: string;
+  url?: string;
+  description: string;
+  tags: string[];
+  code?: string;
+}
+
+const { name, url, description, tags, code } = Astro.props;
+---
+
+<div class="project-item">
+  <div class="project-header">
+    <div class="tags">
+      {
+        tags.map((tag) => (
+          <a href={`/projects/${tag.toLowerCase()}`} class="badge">
+            {tag}
+          </a>
+        ))
+      }
+    </div>
+    <h3 class="project-title">
+      {
+        url ? (
+          <a
+            href={`/projects/${url}`}
+            class="project-link"
+            rel="noopener noreferrer"
+          >
+            {name}
+          </a>
+        ) : (
+          <span>{name}</span>
+        )
+      }
+    </h3>
+  </div>
+  <p class="project-description">{description}</p>
+  {
+    code && (
+      <div class="badges">
+        <a
+          href={code}
+          class="github-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            alt="GitHub Logo"
+            class="github-logo"
+          />
+          <code>Github Code</code>
+        </a>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .project-item {
+    background: var(--theme-bg-secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    width: calc(50% - 0.5rem);
+    border: 2px solid var(--theme-accent);
+  }
+  code {
+    background-color:transparent;
+  }
+  .project-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+
+  .project-title {
+    margin: 0;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    color: var(--theme-text-secondary);
+  }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .project-item {
+      width: 100%;
+    }
+  }
+</style>
