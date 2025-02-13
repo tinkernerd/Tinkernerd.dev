@@ -49,13 +49,19 @@ const MenuLinksArray = Object.values(MenuLinks);
         </svg>
       </button>
       <ul role="menubar" class="nav-links" id="menu">
-  {MenuLinksArray.map((link) => (
-    <li role="none">
-      <HeaderLink href={link.url} aria-label={link.title}>{link.title}</HeaderLink>
-    </li>
-  ))}
-</ul>
-
+        {Object.values(MenuLinks).map((link) => (
+          <li role="none">
+            <HeaderLink 
+              href={link.url} 
+              target={link.external ? "_blank" : undefined} 
+              rel={link.external ? "noopener noreferrer" : undefined} 
+              aria-label={link.title}
+            >
+              {link.title}
+            </HeaderLink>
+          </li>
+        ))}
+      </ul>      
     </div>
   </div>
 </nav>
