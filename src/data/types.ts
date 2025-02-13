@@ -28,7 +28,8 @@ export type SiteMeta = {
 }
 export type NavLink = {
   title: string; 
-  url: string 
+  url: string;
+  external?: boolean;
 };
 
 export type NavLinks = {

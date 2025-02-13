@@ -46,15 +46,20 @@ export const MenuLinks: NavLinks = {
 	},
 	About: {
 		title: 'About',
-		url: '/about'
+		url: '/about',
 	},
   Projects: {
     title: 'Projects',
-    url: '/projects'
+    url: '/projects',
   },
   contact: {
     title: 'Contact',
-    url: '/contact'
+    url: '/contact',
+  },
+  resume: {
+    title: 'Resume',
+    url: 'https://resume.tinkernerd.dev',
+    external: true // Add this flag for external links
   }
 }
 
