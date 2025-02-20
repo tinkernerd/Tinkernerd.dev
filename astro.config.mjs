@@ -16,6 +16,7 @@ export default defineConfig({
   env: {
     schema: {
       AVWX_API_KEY: envField.string({ context: "client", access: "public" }),
+      AIRPORT_DB_KEY: envField.string({ context: "client", access: "public" }),
     }
   },
 });

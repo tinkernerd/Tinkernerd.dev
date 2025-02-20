@@ -93,7 +93,13 @@ const projects: Project[] = [
     url: "metar-decoder",
     code: "https://github.com/tinkernerd/metar-decoder",
     tags: ["JavaScript", "Aviation", "Weather"]
-
+  },
+  {
+    name: "Airport Info",
+    description: "A simple app to view airport information.",
+    url: "airport-info",
+    code: "https://github.com/tinkernerd/airport-info",
+    tags: ["JavaScript", "Aviation"]
   },
   {
     name: "Walls",

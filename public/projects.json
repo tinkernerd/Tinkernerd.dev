@@ -41,7 +41,13 @@
     "url": "live-metar",
     "code": "https://github.com/tinkernerd/live-metar"
   },
-
+  {
+    "id": "airport-info",
+    "btnColor": "192 47% 35%",
+    "iconColor": "24 50% 97.9%",
+    "url": "airport-info",
+    "code": "https://github.com/tinkernerd/airport-info"
+  },
   {
     "id": "metar-decoder",
     "btnColor": "192 47% 35%",
