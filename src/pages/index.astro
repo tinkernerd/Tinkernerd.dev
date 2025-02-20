@@ -1,5 +1,12 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import projects from "@/data/projects";
+import ProjectCard from "@/components/ProjectCard.astro"; // Import the reusable card component
+
+// Filter projects that have the 'aviation' tag (case insensitive)
+const aviationProjects = projects.filter((project) =>
+  project.tags.some((t) => t.toLowerCase() === 'aviation')
+);
 ---
 
 <MainLayout title="Home" description="Home page">
@@ -30,40 +37,61 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <section id="notes">
     <h2>📚 Notes</h2>
-    <p>🚧 Notes are Currently Under Construction. 🚧</p>
     <p>Check back soon or visit my <a href="https://github.com/tinkernerd">GitHub</a> for updates.</p>
-  <p> I have merged my notes into one repo, The <a href="https://github.com/tinkernerd/tinkervault">TinkerVault.</a></p>
+    <p>Here are my current note repos:</p>
+    <ul>
+        <li><a href="https://github.com/tinkernerd/FlightVault">FlightVault</a> - My aviation notes and resources.</li>
+        <li><a href="https://github.com/tinkernerd/TinkerVault">TinkerVault</a> - A collection of my various notes and resources.</li>
+        <li><a href="https://github.com/tinkernerd/BibleVault">BibleVault</a> - Bible study notes and resources.</li>
+        <li><a href="https://github.com/tinkernerd/DevVault">DevVault</a> - Programming and development notes.</li>
+        <li><a href="https://github.com/tinkernerd/PhotoVault">PhotoVault</a> - Photography Notes | Not much at this point</li>
+        <li><a href="https://github.com/tinkernerd/CookBookVault">CookBook Vault</a> - Recipies</li>
+    </ul>
+    <p>Possibly looking at merging them all back into Tinkervault</p>
 </section>
 
 <section id="projects">
     <h2>💡 My Projects</h2>
     <p>I love building and tinkering with automation tools, web development, hardware projects, and open-source contributions.</p>
     <p>Want to explore more? Check out the <a href="/projects">full list of projects</a>.</p>
-    <h3> Here are some of the latest projects </h3>
-
 </section>
 
 <section id="aviation">
     <h2>✈️ Aviation</h2>
     <p>I’m currently training for my Private Pilot License (PPL) and exploring aviation history and flight simulation.</p>
-    <p>See more in my <a href="https://docs.tinkernerd.dev/aviation">aviation notes</a>.</p>
+    <p>See my notes @ <a href="https://github.com/tinkernerd/flightvault">aviation notes</a>, or see some of the photos I've taken over <a href="https://portfolio.nicholasstull.com">Here</a>.</p>
+    <div class="aviationProjects">
+      <h3> Aviation Projects</h3>
+      <p>I've made some project that help me with getting into aviation.</p>
+      <div class="projects">
+        {aviationProjects.length > 0 ? (
+          aviationProjects.map((project) => (
+            <ProjectCard {...project} />
+          ))
+        ) : (
+          <p>No aviation projects found.</p>
+        )}
+      </div>
+    </div>
 </section>
 
 <section id="other-things">
     <h2>🏃‍♂️ Other Things</h2>
     <p>When I’m not coding, I stay active and explore the outdoors. Here’s a live look at my Strava activity:</p>
     <div class="strava-activity">
-      <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/72133560/latest-rides/94e75d2f8f109991f80ee7db2958cd4956d61795'></iframe>
       <iframe height='160' width='300' style='border: none;' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/72133560/activity-summary/94e75d2f8f109991f80ee7db2958cd4956d61795'></iframe>
     </div>
 </section>
 <footer>
   <p><em>Keep tinkering, keep building! 🚀</em></p>
-  <p>Find me on: 
-      <a href="https://github.com/tinkernerd">GitHub</a> | 
-      <a href="https://www.linkedin.com/in/nicholasstull/">LinkedIn</a> | 
-      <a href="https://media.tinkernerd.dev/stull-nicholas-resume.pdf">Resume</a>
-  </p>
 </footer>
 
 </MainLayout>
+<style>
+  .projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+</style>

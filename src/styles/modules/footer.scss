@@ -64,3 +64,20 @@ body > footer {
     font-size: 0.85rem; /* Shrink text on small screens */
   }
 }
+
+.markdown-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  color: var(--text-muted);
+  margin-top:10px;
+
+  /* Use Flexbox to position the elements */
+  display: flex;
+  justify-content: space-between; /* Push elements to opposite sides */
+  align-items: center; /* Center them vertically */
+
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+}

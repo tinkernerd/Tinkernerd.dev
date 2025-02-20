@@ -1,0 +1,177 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+import type { AirportData } from "@/data/aviationdata"; // Define this type as needed
+
+const icao: string | undefined = Astro.params.icao;
+
+// Server-side fetch of airport info using the airport-info API endpoint
+const fetchAirportData = async (icao: string): Promise<AirportData> => {
+  const baseUrl = new URL(Astro.request.url).origin;
+  const apiUrl = `${baseUrl}/api/airportdb?airport=${icao}`;
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  return data;
+};
+
+const airportData: AirportData | null = icao ? await fetchAirportData(icao.toUpperCase()) : null;
+---
+
+<ProjectLayout title={`Airport Info for ${icao}`}>
+  <h1 class="centered">Airport Info for {icao}</h1>
+
+  <div class="input-section">
+    <form id="airportForm">
+      <label for="airportCode">Enter ICAO Code:</label>
+      <input type="text" id="airportCode" name="airportCode" placeholder="e.g., KSBN" required value={icao ?? ""}>
+      <button type="submit">Get Airport Info</button>
+    </form>
+  </div>
+
+  <h2>Airport Data</h2>
+  <table class="airport-table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Name</strong></td><td>{airportData?.name ?? "—"}</td></tr>
+      <tr><td><strong>ICAO</strong></td><td>{airportData?.icao_code ?? "—"}</td></tr>
+      {airportData?.iata_code && ( <tr><td><strong>IATA</strong></td><td>{airportData?.iata_code ?? "—"}</td></tr> )}
+      <tr>
+        <td><strong>Type</strong></td>
+        <td>
+          {airportData?.type
+            ? airportData.type.split("_")[0].charAt(0).toUpperCase() + airportData.type.split("_")[0].slice(1)
+            : "—"}
+        </td>
+      </tr>
+      <tr><td><strong>Latitude</strong></td><td>{airportData?.latitude_deg ?? "—"}</td></tr>
+      <tr><td><strong>Longitude</strong></td><td>{airportData?.longitude_deg ?? "—"}</td></tr>
+      <tr><td><strong>Elevation (ft)</strong></td><td>{airportData?.elevation_ft ?? "—"}</td></tr>
+      <tr><td><strong>Country</strong></td><td>{airportData?.iso_country ?? "—"}</td></tr>
+      <tr><td><strong>Region</strong></td><td>{airportData?.iso_region ?? "—"}</td></tr>
+      <tr><td><strong>Municipality</strong></td><td>{airportData?.municipality ?? "—"}</td></tr>
+      {airportData?.home_link && (
+        <tr>
+          <td><strong>Home Link</strong></td>
+          <td><a href={airportData.home_link} target="_blank">{airportData.home_link}</a></td>
+        </tr>
+      )}
+        {/* SkyVector Row */}
+  {(() => {
+    // If an IATA code exists and is not just whitespace, use it.
+    // Otherwise, remove the first character from the ICAO code.
+    const skyVectorCode =
+      airportData?.iata_code && airportData.iata_code.trim() !== ""
+        ? airportData.iata_code
+        : icao
+        ? icao.substring(1)
+        : "N/A";
+    return (
+      <tr>
+        <td><strong>SkyVector</strong></td>
+        <td>
+          <a
+            href={`https://skyvector.com/airport/${skyVectorCode}`}
+            target="_blank"
+          >
+            {`https://skyvector.com/airport/${skyVectorCode}`}
+          </a>
+        </td>
+      </tr>
+    );
+  })()}
+      {airportData?.wikipedia_link && (
+        <tr>
+          <td><strong>Wikipedia</strong></td>
+          <td><a href={airportData.wikipedia_link} target="_blank">{airportData.wikipedia_link}</a></td>
+        </tr>
+      )}
+    </tbody>
+
+    {airportData?.freqs && airportData.freqs.length > 0 ? (
+      <>
+        <tbody>
+          <tr>
+            <td colspan="2" style="text-align: center;"><strong>Frequencies</strong></td>
+          </tr>
+        </tbody>
+        <tbody>
+          {airportData.freqs.map((freq) => (
+            <tr>
+              <td><strong>{freq.description}</strong></td>
+              <td>{freq.frequency_mhz} MHz</td>
+            </tr>
+          ))}
+        </tbody>
+      </>
+    ) : null}
+
+    {airportData?.runways && airportData.runways.length > 0 ? (
+      <>
+        <tbody>
+          <tr>
+            <td colspan="2" style="text-align: center;"><strong>Runways</strong></td>
+          </tr>
+        </tbody>
+        <tbody>
+          {airportData.runways.map((runway) => {
+          const dimensions =
+            runway.length_ft && runway.width_ft
+              ? `${runway.length_ft} ft x ${runway.width_ft} ft`
+              : "N/A";
+          const surface = (runway.surface ?? "N/A").trim();
+          const runwayInfo = `Dimensions: ${dimensions}, Surface: ${surface}${runway.lighted === "1" ? ", Lighted" : ""}`;
+          
+          return (
+            <tr id={`runway-${runway.id}`}>
+              <td>
+                <strong>
+                  {runway.le_ident && runway.he_ident
+                    ? `${runway.le_ident} / ${runway.he_ident}`
+                    : (runway.le_ident || "N/A")}
+                </strong>
+              </td>
+              <td>{runwayInfo}</td>
+            </tr>
+          );
+        })}
+        </tbody>
+      </>
+    ) : null}
+  </table>
+
+  <script is:inline>
+    // When a new search is submitted, redirect to the corresponding URL
+    document.getElementById("airportForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const airport = document.getElementById("airportCode").value.toUpperCase();
+      if (airport.length === 4) {
+        window.location.href = `/aviation/airport-info/${airport}`;
+      } else {
+        alert("Please enter a valid 4-letter ICAO code.");
+      }
+    });
+  </script>
+
+<style lang="scss">
+  .input-section {
+    margin-bottom: 20px;
+  }
+  .airport-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .airport-table th:first-child,
+  .airport-table td:first-child {
+    width: 30%;
+  }
+
+  .airport-table th:last-child,
+  .airport-table td:last-child {
+    width: 70%;
+  }
+</style>
+</ProjectLayout>

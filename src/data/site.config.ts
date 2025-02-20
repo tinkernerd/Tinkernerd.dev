@@ -44,17 +44,9 @@ export const MenuLinks: NavLinks = {
 		title: 'Home',
 		url: '/'
 	},
-	About: {
-		title: 'About',
-		url: '/about',
-	},
   Projects: {
     title: 'Projects',
     url: '/projects',
-  },
-  contact: {
-    title: 'Contact',
-    url: '/contact',
   },
   resume: {
     title: 'Resume',
@@ -81,7 +73,7 @@ export const socialLinks: SocialLinks = {
   },
   email: {
     title: 'Email',
-    url: 'mailto:nicholasp.stull@gmail.com',
+    url: 'mailto:nick@tinkernerd.dev',
     icon: 'tabler:brand-mailgun',
   }
 };

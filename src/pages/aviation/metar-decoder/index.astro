@@ -1,0 +1,31 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout title="METAR Decoder">
+  <h1 class="centered">METAR Decoder</h1>
+
+  <div class="input-section">
+    <form id="metarForm">
+      <label for="airportCode">Enter ICAO Code:</label>
+      <input type="text" id="airportCode" name="airportCode" placeholder="e.g., KSBN" required>
+      <button type="submit">Get METAR</button>
+    </form>
+  </div>
+
+  <script is:inline>
+    document.getElementById("metarForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const airport = document.getElementById("airportCode").value.toUpperCase();
+      if (airport.length === 4) {
+        window.location.href = `/aviation/metar-decoder/${airport}`;
+      } else {
+        alert("Please enter a valid 4-letter ICAO code.");
+      }
+    });
+  </script>
+
+  <style>
+    .input-section { margin-bottom: 20px; }
+  </style>
+</ProjectLayout>

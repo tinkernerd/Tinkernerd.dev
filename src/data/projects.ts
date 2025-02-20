@@ -12,49 +12,49 @@ const projects: Project[] = [
   {
     name: "Bill Total",
     description: "A simple bill total calculator built with vanilla JavaScript.",
-    url: "bill-total",
+    url: "/projects/bill-total",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/bill-review.astro",
     tags: ["JavaScript", "Math"]
   },
   {
     name: "Book Review",
     description: "This script updates a character count in real time as a user types into a textarea element.",
-    url: "book-review",
+    url: "/projects/book-review",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/book-review.astro",
     tags: ["JavaScript", "Text Processing"]
   },
   {
     name: "Bouncing Balls",
     description: "A simple bouncing ball animation using HTML, CSS, and JavaScript.",
-    url: "bouncing-balls",
+    url: "/projects/bouncing-balls",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/bouncing-balls.astro",
     tags: ["JavaScript", "Animation"]
   },
   {
     name: "JS Calculator",
     description: "A calculator using JS, HTML, and CSS.",
-    url: "js-calculator",
+    url: "/projects/js-calculator",
     code: "https://github.com/tinkernerd/js-calc",
     tags: ["JavaScript", "Math"]
   },
   {
     name: "Dynamic Table",
     description: "A simple dynamic table using JS, HTML, and CSS.",
-    url: "dynamic-table",
+    url: "/projects/dynamic-table",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/dynamic-table.astro",
     tags: ["JavaScript", "Math"]
   },
   {
     name: "NASA Image of the Day",
     description: "A simple app to view the NASA image of the day.",
-    url: "nasa-image-of-the-day",
+    url: "/projects/nasa-image-of-the-day",
     code: "https://github.com/tinkernerd/nasa-image-of-the-day",
     tags: ["API", "Space"]
   },
   {
     name: "Password Generator",
     description: "A simple password generator using JS, HTML, and CSS.",
-    url: "password-generator",
+    url: "/projects/password-generator",
     code: "https://github.com/tinkernerd/PassGen",
     tags: ["JavaScript", "Security"]
   },
@@ -97,7 +97,7 @@ const projects: Project[] = [
   {
     name: "Airport Info",
     description: "A simple app to view airport information.",
-    url: "airport-info",
+    url: "/aviation/airport-info",
     code: "https://github.com/tinkernerd/airport-info",
     tags: ["JavaScript", "Aviation"]
   },

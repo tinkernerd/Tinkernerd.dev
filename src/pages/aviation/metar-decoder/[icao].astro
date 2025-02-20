@@ -1,0 +1,106 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+import type { MetarData } from "@/data/aviationdata";
+
+const icao: string | undefined = Astro.params.icao;
+
+// Function to fetch METAR data
+const fetchMetarData = async (icao: string): Promise<MetarData> => {
+  const baseUrl = new URL(Astro.request.url).origin;
+  const apiUrl = `${baseUrl}/api/metar?airport=${icao}`;
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  return data;
+};
+
+const metarData: MetarData | null = icao ? await fetchMetarData(icao.toUpperCase()) : null;
+---
+
+<ProjectLayout title="METAR Decoder">
+  <h1 class="centered">METAR Decoder</h1>
+
+  <div class="input-section">
+    <form id="metarForm">
+      <label for="airportCode">Enter ICAO Code:</label>
+      <input
+        type="text"
+        id="airportCode"
+        name="airportCode"
+        placeholder="e.g., KSBN"
+        required
+        value={icao ?? ""}
+      />
+      <button type="submit">Get METAR</button>
+    </form>
+  </div>
+
+  <h2>Decoded METAR Data</h2>
+  <table class="metar-table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+
+    <tbody class="metars" id="staticData">
+      <tr><td><strong>Raw METAR</strong></td><td id="rawMetar">{metarData?.raw ?? "—"}</td></tr>
+      <tr><td><strong>Altimeter</strong></td><td id="altimeter">{metarData?.altimeter?.value ?? "—"}</td></tr>
+      <tr><td><strong>Temperature</strong></td><td id="temperature">{metarData?.temperature?.value ?? "—"}°C</td></tr>
+      <tr><td><strong>Dew Point</strong></td><td id="dewPoint">{metarData?.dewpoint?.value ?? "—"}°C</td></tr>
+      <tr><td><strong>Wind</strong></td><td id="wind">{metarData?.wind_direction?.repr ?? "—"}° at {metarData?.wind_speed?.repr ?? "—"} knots</td></tr>
+      <tr><td><strong>Relative Humidity</strong></td><td id="relative_humidity">{metarData?.relative_humidity != null ? (metarData.relative_humidity * 100).toFixed(1) : "—"}%</td></tr>
+      <tr><td><strong>Visibility</strong></td><td id="visibility">{metarData?.visibility?.value ?? "—"} miles</td></tr>
+      <tr><td><strong>Pressure</strong></td><td id="pressure">{metarData?.altimeter?.value ?? "—"} inHg</td></tr>
+      <tr><td><strong>Flight Rules</strong></td><td id="flightRules">{metarData?.flight_rules ?? "—"}</td></tr>
+      <tr><td><strong>Clouds</strong></td><td id="clouds">{metarData?.clouds?.map((cloud) => cloud.repr).join(", ") ?? "Clear"}</td></tr>
+    </tbody>
+
+    {metarData?.wx_codes?.length ? (
+      <>
+        <tbody id="weatherConditionsSection">
+          <tr><td colspan="2" style="text-align: center;"><strong>Weather Conditions</strong></td></tr>
+        </tbody>
+        <tbody id="weatherConditionsContainer">
+          {metarData.wx_codes.map((code: { repr: string; value: string }) => (
+            <tr><td><strong>{code.repr}</strong></td><td>{code.value}</td></tr>
+          ))}
+        </tbody>
+      </>
+    ) : null}
+    
+    <tbody id="weatherConditionsContainer">
+      {metarData?.wx_codes?.map((code) => (
+        <tr><td><strong>{code.repr}</strong></td><td>{code.value}</td></tr>
+      )) ?? <tr><td colspan="2">No Weather Conditions</td></tr>}
+    </tbody>
+
+    <!-- Remarks Section -->
+    <tbody id="remarksSection">
+      <tr><td colspan="2" style="text-align: center;"><strong>Remarks</strong></td></tr>
+    </tbody>
+    <tbody id="remarksContainer">
+      {metarData?.remarks_info?.codes?.map((remark) => (
+        <tr><td><strong>{remark.repr}</strong></td><td>{remark.value}</td></tr>
+      )) ?? <tr><td colspan="2">No Remarks</td></tr>}
+    </tbody>
+  </table>
+
+  <script is:inline>
+    document.getElementById("metarForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const airport = document.getElementById("airportCode").value.toUpperCase();
+      if (airport.length === 4) {
+        window.location.href = `/aviation/metar-decoder/${airport}`;
+      } else {
+        alert("Please enter a valid 4-letter ICAO code.");
+      }
+    });
+  </script>
+
+  <style lang="scss">
+    .input-section {
+      margin-bottom: 20px;
+    }
+  </style>
+</ProjectLayout>
