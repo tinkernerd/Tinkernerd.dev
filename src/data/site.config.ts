@@ -40,11 +40,11 @@ export const GithubRepo: GithubInfo = {
 export const COMMUNITY_INVITE_URL = `https://astro.build/chat`
 
 export const MenuLinks: NavLinks = {
-	Home: {
+	home: {
 		title: 'Home',
 		url: '/'
 	},
-  Projects: {
+  projects: {
     title: 'Projects',
     url: '/projects',
   },
@@ -52,6 +52,16 @@ export const MenuLinks: NavLinks = {
     title: 'Resume',
     url: 'https://resume.tinkernerd.dev',
     external: true // Add this flag for external links
+  },
+  contact: {
+    title: 'Contact',
+    url: 'https://contact.tinkernerd.dev',
+    external: true
+  },
+  photography: {
+    title: 'Photography',
+    url: 'https://photos.tinkernerd.dev',
+    external: true
   }
 }
 
@@ -75,6 +85,11 @@ export const socialLinks: SocialLinks = {
     title: 'Email',
     url: 'mailto:nick@tinkernerd.dev',
     icon: 'tabler:brand-mailgun',
+  },
+  portfolio: {
+    title: 'Portfolio',
+    url: 'https://photos.tinkernerd.com',
+    icon: 'material-symbols:camera',
   }
 };
 
