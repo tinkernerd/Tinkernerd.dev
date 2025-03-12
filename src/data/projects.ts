@@ -61,28 +61,28 @@ const projects: Project[] = [
   {
     name: "Shape Selector",
     description: "A simple shape selector using JS, HTML, and CSS.",
-    url: "shape-selector",
+    url: "/projects/shape-selector",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/shape-selector.astro",
     tags: ["JavaScript", "UI", "Shapes"]
   },
   {
     name: "Temp Converter",
     description: "A simple temperature converter using JS, HTML, and CSS.",
-    url: "temp-conv",
+    url: "/projects/temp-conv",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/temp-conv.astro",
     tags: ["JavaScript", "Math", "Utility"]
   },
   {
     name: "Timer",
     description: "A simple timer using JS, HTML, and CSS.",
-    url: "timer",
+    url: "/projects/timer",
     code: "https://github.com/tinkernerd/tinkernerd.dev/tree/main/src/pages/projects/time.astro",
     tags: ["JavaScript", "Time", "Utility"]
   },  
   {
     name: "Live METAR",
     description: "A simple app to view live METAR data.",
-    url: "live-metar",
+    url: "/aviation/live-metar",
     code: "https://github.com/tinkernerd/live-metar",
     tags: ["JavaScript", "Aviation", "Weather"]
 
@@ -90,7 +90,7 @@ const projects: Project[] = [
   {
     name: "METAR Decoder",
     description: "A simple app to decode METAR data.",
-    url: "metar-decoder",
+    url: "/aviation/metar-decoder",
     code: "https://github.com/tinkernerd/metar-decoder",
     tags: ["JavaScript", "Aviation", "Weather"]
   },
