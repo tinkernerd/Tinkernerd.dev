@@ -1,4 +1,4 @@
-import type { NavLinks, SiteConfig, SocialLinks, GithubInfo} from '@/types'
+import type { NavLink, SiteConfig, SocialLinks, GithubInfo} from '@/types'
 
 
 export const siteConfig: SiteConfig = {
@@ -37,33 +37,27 @@ export const GithubRepo: GithubInfo = {
 };
 
 
-export const COMMUNITY_INVITE_URL = `https://astro.build/chat`
-
-export const MenuLinks: NavLinks = {
-	home: {
-		title: 'Home',
-		url: '/'
-	},
-  projects: {
-    title: 'Projects',
-    url: '/projects',
+export const MenuLinks: NavLink[] = [
+  {
+    title: 'Home',
+    url: '/'
   },
-  resume: {
+  {
+    title: 'Projects',
+    url: '/projects'
+  },
+  {
     title: 'Resume',
     url: 'https://resume.tinkernerd.dev',
-    external: true // Add this flag for external links
+    external: true
   },
-  contact: {
+  {
     title: 'Contact',
     url: 'https://contact.tinkernerd.dev',
     external: true
   },
-  photography: {
-    title: 'Photography',
-    url: 'https://photos.tinkernerd.dev',
-    external: true
-  }
-}
+];
+
 
 export const socialLinks: SocialLinks = {
   github: {
@@ -86,11 +80,11 @@ export const socialLinks: SocialLinks = {
     url: 'mailto:nick@tinkernerd.dev',
     icon: 'tabler:brand-mailgun',
   },
-  portfolio: {
-    title: 'Portfolio',
-    url: 'https://photos.tinkernerd.com',
-    icon: 'material-symbols:camera',
-  }
+  //portfolio: {
+    //title: 'Portfolio',
+    //url: 'https://photos.tinkernerd.com',
+    //icon: 'material-symbols:camera',
+  //}
 };
 
 

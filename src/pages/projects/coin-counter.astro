@@ -1,0 +1,104 @@
+---
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout
+  title="Coin Counter"
+  description="A simple coin counter application built with HTML, CSS, and JavaScript."
+  >
+  <div class="container">
+  <h1>Coin Counter</h1>
+
+  <div class="coin-row">
+      <label for="dollar">Dollar Coin ($1):</label>
+      <input type="number" id="dollar" min="0" value="0" onchange="updateTotal()">
+  </div>
+
+  <div class="coin-row">
+      <label for="half-dollar">Half Dollar Coin ($0.50):</label>
+      <input type="number" id="half-dollar" min="0" value="0" onchange="updateTotal()">
+  </div>
+
+  <div class="coin-row">
+      <label for="quarter">Quarter ($0.25):</label>
+      <input type="number" id="quarter" min="0" value="0" onchange="updateTotal()">
+  </div>
+
+  <div class="coin-row">
+      <label for="dime">Dime ($0.10):</label>
+      <input type="number" id="dime" min="0" value="0" onchange="updateTotal()">
+  </div>
+
+  <div class="coin-row">
+      <label for="nickel">Nickel ($0.05):</label>
+      <input type="number" id="nickel" min="0" value="0" onchange="updateTotal()">
+  </div>
+
+  <div class="coin-row">
+      <label for="penny">Penny ($0.01):</label>
+      <input type="number" id="penny" min="0" value="0" onchange="updateTotal()">
+  </div>
+
+  <hr>
+
+  <div class="total-row">
+      <span>Total:</span>
+      <span id="total">$0.00</span>
+  </div>
+</div>
+</ProjectLayout>
+
+<script is:inline>
+  function updateTotal() {
+  const dollarValue = document.getElementById("dollar").value * 1;
+  const halfDollarValue = document.getElementById("half-dollar").value * 0.5;
+  const quarterValue = document.getElementById("quarter").value * 0.25;
+  const dimeValue = document.getElementById("dime").value * 0.1;
+  const nickelValue = document.getElementById("nickel").value * 0.05;
+  const pennyValue = document.getElementById("penny").value * 0.01;
+
+  const total =
+    dollarValue +
+    halfDollarValue +
+    quarterValue +
+    dimeValue +
+    nickelValue +
+    pennyValue;
+
+  document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+}
+</script>
+
+<style lang="scss">
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.coin-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.coin-row label {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 80px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+</style>

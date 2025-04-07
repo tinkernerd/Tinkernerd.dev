@@ -27,14 +27,11 @@ export type SiteMeta = {
 	articleDate?: string | undefined
 }
 export type NavLink = {
-  title: string; 
+  title: string;
   url: string;
   external?: boolean;
 };
 
-export type NavLinks = {
-  [key: string]: NavLink;
-};
 
 export type SocialLink = {
   title: string;

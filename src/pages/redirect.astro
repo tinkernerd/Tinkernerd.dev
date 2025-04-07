@@ -1,0 +1,43 @@
+---
+const { searchParams } = new URL(Astro.request.url);
+const target = searchParams.get('to') ?? '/';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Leaving TinkerNerd.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="flex flex-col items-center justify-center min-h-screen p-6 text-center">
+    <h1 class="text-2xl font-bold mb-4">You're leaving TinkerNerd.dev</h1>
+    <p class="mb-2">
+      Redirecting to:
+      <a href={target} class="text-blue-600 underline break-all">{target}</a>
+    </p>
+    <p class="mb-4">
+      You will be redirected in <span id="countdown">5</span> seconds.
+    </p>
+    <a
+      href="/"
+      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+    >
+      Stay on TinkerNerd.dev
+    </a>
+
+    <script>
+      const target = decodeURIComponent(new URLSearchParams(window.location.search).get("to") || "/");
+      let countdown = 5;
+      const countdownEl = document.getElementById("countdown");
+
+      const interval = setInterval(() => {
+        countdown -= 1;
+        if (countdownEl) countdownEl.textContent = `${countdown}`;
+        if (countdown <= 0) {
+          clearInterval(interval);
+          window.location.href = target;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

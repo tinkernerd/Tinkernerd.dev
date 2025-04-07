@@ -6,7 +6,7 @@
     "astro": "astro",
     "build": "astro build",
     "check": "astro check",
-    "watch": "astro check --wartch & astro dev --host",
+    "watch": "astro check --watch & astro dev --host",
     "dev": "astro dev --host",
     "preview": "astro preview",
     "start": "astro dev"

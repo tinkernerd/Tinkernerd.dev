@@ -143,6 +143,13 @@ const projects: Project[] = [
     description: "A simple loaner manager using PowerShell.",
     code: "https://github.com/tinkernerd/Loaner-Updater",
     tags: ["PowerShell", "Loaner"]
+  },
+  {
+    name: "Coin Counter",
+    description: "A simple coin counter using html, js, and css.",
+    url: "/projects/coin-counter",
+    code: "https://github.com/tinkernerd/coin-counter",
+    tags: ["JavaScript", "Math", "Utility"]
   }
 ];
 
